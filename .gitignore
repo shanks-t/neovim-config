@@ -1,0 +1,16 @@
+# Neovim runtime artifacts
+*.swp
+*.swo
+*.swm
+Session.vim
+session.vim
+.netrwhist
+shada/*
+
+# Lazy.nvim and cache files
+state.json
+lazy-lock.json.backup
+.cache/
+
+# OS cruft
+.DS_Store
