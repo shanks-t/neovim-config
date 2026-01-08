@@ -34,51 +34,8 @@ return {
       })
 
       -- Configure Pyright LSP using native vim.lsp.config
+      -- Note: venv-lsp.nvim plugin handles virtual environment detection automatically
       local mason_bin = vim.fn.stdpath('data') .. '/mason/bin/pyright-langserver'
-
-      -- Smart venv detection function
-      local function get_python_path(workspace)
-        -- Check for common venv locations in order of preference
-        local venv_patterns = {
-          workspace .. '/.venv/bin/python',      -- Most common
-          workspace .. '/venv/bin/python',
-          workspace .. '/.env/bin/python',
-          workspace .. '/env/bin/python',
-        }
-
-        for _, path in ipairs(venv_patterns) do
-          if vim.fn.executable(path) == 1 then
-            return path
-          end
-        end
-
-        -- Fallback to system python
-        return vim.fn.exepath('python3') or vim.fn.exepath('python')
-      end
-
-      -- Auto-update Python path when LSP attaches
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('pyright-venv-attach', { clear = true }),
-        callback = function(event)
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.name == 'pyright' then
-            local root_dir = client.config.root_dir or vim.fn.getcwd()
-            local python_path = get_python_path(root_dir)
-
-            -- Update client settings with correct Python path
-            client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-              python = {
-                pythonPath = python_path,
-              }
-            })
-
-            -- Notify the LSP server of the new settings
-            client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
-
-            print('Pyright using: ' .. python_path)
-          end
-        end,
-      })
 
       vim.lsp.config.pyright = {
         cmd = { mason_bin, '--stdio' },
