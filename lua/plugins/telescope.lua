@@ -7,6 +7,16 @@ return {
       local telescope = require('telescope')
       local actions = require('telescope.actions')
 
+      -- Override telescope's treesitter highlighter to prevent errors
+      local previewers = require('telescope.previewers')
+      local previewers_utils = require('telescope.previewers.utils')
+
+      -- Monkey-patch to disable treesitter highlighting in previews
+      previewers_utils.ts_highlighter = function() return false end
+      previewers_utils.highlighter = function(bufnr, ft)
+        vim.api.nvim_set_option_value('syntax', ft, { buf = bufnr })
+      end
+
       telescope.setup({
         defaults = {
           mappings = {
