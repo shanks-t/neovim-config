@@ -8,8 +8,9 @@ require("config.lazy")
 
 -- Basic Settings
 vim.opt.number = true              -- Show line numbers
-vim.opt.relativenumber = true      -- Relative line numbers
+-- vim.opt.relativenumber = true   -- Relative line numbers (disabled)
 vim.opt.mouse = 'a'                -- Enable mouse support
+vim.opt.clipboard = 'unnamedplus'  -- Use system clipboard for yank/paste
 vim.opt.ignorecase = true          -- Case insensitive search
 vim.opt.smartcase = true           -- Unless uppercase is used
 vim.opt.hlsearch = false           -- Don't highlight search results

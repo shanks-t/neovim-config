@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.9', -- Updated for nvim 0.11.5 compatibility
+    branch = 'master', -- Use latest stable from master branch
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local telescope = require('telescope')
