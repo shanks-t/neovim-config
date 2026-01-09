@@ -1,0 +1,323 @@
+{
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 0,
+    "editor.wrappingIndent": "same",
+    "editor.accessibilitySupport": "off",
+    "terminal.integrated.fontFamily": "hack nfm",
+    "editor.lineNumbers": "on",
+    "workbench.colorTheme": "Alt Catppuccin Frappé",
+    "workbench.tree.indent": 17,
+    "go.toolsManagement.autoUpdate": true,
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    "python.languageServer": "None",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.analysis.autoImportCompletions": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.venv": false
+    },
+    "search.exclude": {
+        "**/.venv": false
+    },
+    "notebook.lineNumbers": "on",
+    "notebook.codeActionsOnSave": {
+        "notebook.source.fixAll": "explicit"
+    },
+    "editor.minimap.enabled": false,
+    "terminal.integrated.inheritEnv": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.formatOnSave": true,
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "{git,gitlens}:/**/*.{md,csv,svg}": "default",
+        "file:/**/*.xlsx": "jupyter-data-wrangler"
+    },
+    "editor.detectIndentation": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "python": true
+    },
+    "workbench.activityBar.location": "hidden",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "git.blame.editorDecoration.enabled": true,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "jdk.telemetry.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+
+    // ============================================
+    // VSCodeVim Configuration
+    // ============================================
+    "vim.leader": "<space>",
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.easymotion": true,
+    "vim.easymotionMarkerBackgroundColor": "#000000",
+    "vim.easymotionMarkerForegroundColorOneChar": "#ff0000",
+    "vim.easymotionMarkerForegroundColorTwoCharFirst": "#ffb400",
+    "vim.easymotionMarkerForegroundColorTwoCharSecond": "#b98300",
+
+    // Sneak-like 2-char search with 's'
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+
+    // Show commands in status bar
+    "vim.showcmd": true,
+
+    // Smooth scrolling
+    "vim.scroll": 10,
+
+    // Delegate these keys to VS Code (keeping native behavior)
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-w>": false,
+        "<C-n>": false,
+        "<C-p>": false
+    },
+
+    // ============================================
+    // Custom Vim Mappings
+    // ============================================
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Quick easymotion without double leader
+        {
+            "before": ["s"],
+            "after": ["<leader>", "<leader>", "2", "s"]
+        },
+        {
+            "before": ["<C-j>"],
+            "after": ["<leader>", "<leader>", "j"]
+        },
+        {
+            "before": ["<C-k>"],
+            "after": ["<leader>", "<leader>", "k"]
+        },
+
+        // Clear search highlight
+        {
+            "before": ["<leader>", "h"],
+            "commands": [":nohl"]
+        },
+
+        // File operations via leader
+        {
+            "before": ["<leader>", "w"],
+            "commands": ["workbench.action.files.save"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "Q"],
+            "commands": ["workbench.action.closeAllEditors"]
+        },
+
+        // Quick file explorer
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.view.explorer"]
+        },
+
+        // Fuzzy find files (VS Code's Cmd+P)
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+
+        // Find in files (VS Code's Cmd+Shift+F)
+        {
+            "before": ["<leader>", "f", "g"],
+            "commands": ["workbench.action.findInFiles"]
+        },
+
+        // Go to symbol in workspace
+        {
+            "before": ["<leader>", "f", "s"],
+            "commands": ["workbench.action.showAllSymbols"]
+        },
+
+        // Recent files
+        {
+            "before": ["<leader>", "f", "r"],
+            "commands": ["workbench.action.openRecent"]
+        },
+
+        // Split navigation
+        {
+            "before": ["<leader>", "v"],
+            "commands": ["workbench.action.splitEditor"]
+        },
+
+        // Navigate between splits
+        {
+            "before": ["<C-h>"],
+            "commands": ["workbench.action.navigateLeft"]
+        },
+        {
+            "before": ["<C-l>"],
+            "commands": ["workbench.action.navigateRight"]
+        },
+
+        // LSP actions with g prefix
+        {
+            "before": ["g", "d"],
+            "commands": ["editor.action.revealDefinition"]
+        },
+        {
+            "before": ["g", "D"],
+            "commands": ["editor.action.revealDeclaration"]
+        },
+        {
+            "before": ["g", "i"],
+            "commands": ["editor.action.goToImplementation"]
+        },
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.goToReferences"]
+        },
+        {
+            "before": ["g", "h"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["g", "p"],
+            "commands": ["editor.action.peekDefinition"]
+        },
+
+        // Rename
+        {
+            "before": ["<leader>", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
+
+        // Format document
+        {
+            "before": ["<leader>", "r", "f"],
+            "commands": ["editor.action.formatDocument"]
+        },
+
+        // Code actions
+        {
+            "before": ["<leader>", "c", "a"],
+            "commands": ["editor.action.quickFix"]
+        },
+
+        // Toggle terminal
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.terminal.toggleTerminal"]
+        },
+
+        // Navigate forward/back
+        {
+            "before": ["<C-o>"],
+            "commands": ["workbench.action.navigateBack"]
+        },
+        {
+            "before": ["<C-i>"],
+            "commands": ["workbench.action.navigateForward"]
+        },
+
+        // Better undo/redo
+        {
+            "before": ["u"],
+            "commands": ["undo"]
+        },
+        {
+            "before": ["<C-r>"],
+            "commands": ["redo"]
+        }
+    ],
+
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // Move selected lines up/down
+        {
+            "before": ["J"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["editor.action.moveLinesUpAction"]
+        },
+
+        // Quick easymotion in visual mode
+        {
+            "before": ["s"],
+            "after": ["<leader>", "<leader>", "2", "s"]
+        }
+    ],
+
+    "vim.insertModeKeyBindings": [
+        // jj to escape
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+
+    "vim.operatorPendingModeKeyBindings": [
+        // Quick easymotion for operators (like 'ds')
+        {
+            "before": ["s"],
+            "after": ["<leader>", "<leader>", "2", "s"]
+        }
+    ],
+
+    // ============================================
+    // Editor UI Optimizations
+    // ============================================
+    "editor.cursorBlinking": "solid",
+    "editor.cursorSurroundingLines": 8,
+    "editor.scrollBeyondLastLine": false,
+    "workbench.list.smoothScrolling": true,
+    "editor.smoothScrolling": true,
+    "breadcrumbs.enabled": true,
+
+    // Quick suggestions settings
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestSelection": "first",
+    "editor.acceptSuggestionOnEnter": "on",
+
+    // Which Key extension configuration
+    "whichkey.delay": 500,
+    "whichkey.sortOrder": "alphabetically",
+    "whichkey.showIcons": true,
+    "whichkey.bindingOverrides": [
+        {
+            "keys": "space",
+            "name": "Commands",
+            "type": "bindings",
+            "bindings": []
+        }
+    ]
+}

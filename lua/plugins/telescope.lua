@@ -29,9 +29,14 @@ return {
         pickers = {
           find_files = {
             theme = "dropdown",
+            hidden = true, -- Show hidden files by default
+            find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
           },
           live_grep = {
             theme = "dropdown",
+            additional_args = function()
+              return { "--hidden", "--glob", "!.git/*" }
+            end,
           },
         },
       })

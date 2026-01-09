@@ -32,9 +32,27 @@ vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
   command = "silent! wa",
 })
 
+-- Auto save after typing stops (500ms delay)
+vim.opt.updatetime = 500
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+      vim.cmd("silent! write")
+    end
+  end,
+})
+
 -- Basic Keymaps
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
+
+-- Split management
+vim.keymap.set('n', '<leader>v', ':vsplit<CR>', { desc = 'Vertical split' })
+vim.keymap.set('n', '<leader>s', ':split<CR>', { desc = 'Horizontal split' })
+
+-- Quick escape from insert mode
+vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Better window navigation (Ctrl+h/j/k/l)
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Navigate to left window' })
