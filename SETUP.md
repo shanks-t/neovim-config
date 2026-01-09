@@ -7,6 +7,18 @@ Your Neovim configuration is ready! Here's how to get started.
 ### 1. Install Required Tools
 
 ```bash
+# Install Node.js and yarn (required for markdown-preview plugin)
+# On macOS with Homebrew:
+brew install node yarn
+
+# Or update if already installed:
+brew upgrade node yarn
+
+# Verify installation:
+node --version  # Should be v18+
+npm --version
+yarn --version
+
 # Install ruff (Python formatter - if not already installed)
 uv tool install ruff
 
@@ -95,6 +107,16 @@ Files automatically save when you switch buffers or lose focus (VSCode-style)
 |------------|--------|
 | `<leader>fm` | Format file or selection |
 
+### Markdown Preview
+
+| Command | Action |
+|---------|--------|
+| `:MarkdownPreview` | Start live preview in browser |
+| `:MarkdownPreviewStop` | Stop preview |
+| `:MarkdownPreviewToggle` | Toggle preview |
+
+Preview automatically loads when opening `.md` files.
+
 ### Other Useful Commands
 
 | Keybinding | Action |
@@ -109,6 +131,12 @@ Note: `<leader>` is the spacebar by default
 
 ### Plugins not loading?
 Run `:Lazy sync` in Neovim
+
+### Markdown preview not working?
+The plugin requires Node.js and yarn. If commands aren't working:
+1. Ensure Node.js and yarn are installed: `node --version && yarn --version`
+2. Rebuild the plugin: `:Lazy build markdown-preview.nvim`
+3. Restart Neovim
 
 ### LSP not working?
 Check LSP status with `:LspInfo`
