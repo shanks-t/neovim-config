@@ -10,6 +10,14 @@ return {
           topdelete = { text = '‾' },
           changedelete = { text = '~' },
         },
+        current_line_blame = true, -- Show git blame inline on current line
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+          delay = 300, -- Delay in ms before showing blame (reduces flicker)
+          ignore_whitespace = false,
+        },
+        current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -37,6 +45,7 @@ return {
           map('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
           map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview hunk' })
           map('n', '<leader>hb', function() gs.blame_line{full=true} end, { desc = 'Blame line' })
+          map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle inline blame' })
         end,
       })
     end,
